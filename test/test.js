@@ -4,19 +4,14 @@ var expect  = require("chai").expect;
 var request = require("request");
 
 describe("Testing GET localhost author 2", function() {
-
-
     var url = "http://localhost:3000/";
-
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        expect(JSON.parse(response.body).articles).be.a('Array');
         done();
       });
     });
-
-
-
   });
 
 
@@ -25,6 +20,7 @@ describe("Testing GET localhost author 3", function() {
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        expect(JSON.parse(response.body).author.id).to.equal(2);
         done();
       });
     });  
@@ -35,6 +31,7 @@ describe("Testing GET localhost author 1", function() {
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        expect(JSON.parse(response.body).author.id).to.equal(1);
         done();
       });
     });  
@@ -45,6 +42,7 @@ describe("Testing GET localhost article slug moring-vinyasa-flow-routine", funct
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        expect(JSON.parse(response.body).article.slug).to.equal('moring-vinyasa-flow-routine');
         done();
       });
     });  
@@ -55,6 +53,7 @@ describe("Testing GET localhost article slug introduction-to-ashtanga", function
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        expect(JSON.parse(response.body).article.slug).to.equal('introduction-to-ashtanga');
         done();
       });
     });  
@@ -65,6 +64,7 @@ describe("Testing GET localhost article slug secrets-of-a-yoga-teacher", functio
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        expect(JSON.parse(response.body).article.slug).to.equal('secrets-of-a-yoga-teacher');
         done();
       });
     });  
@@ -75,6 +75,7 @@ describe("Testing GET localhost article slug yoga-therapy", function() {
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        expect(JSON.parse(response.body).article.slug).to.equal('yoga-therapy');
         done();
       });
     });  
