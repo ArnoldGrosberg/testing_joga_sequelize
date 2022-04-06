@@ -3,27 +3,52 @@
 var expect  = require("chai").expect;
 var request = require("request");
 
-describe("Testing GET localhost author 2", function() {
-    var url = "http://localhost:3000/";
+describe("Testing GET localhost author (All authors)", function() {
+    var url = "http://localhost:3000/author/";
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
-        expect(JSON.parse(response.body).articles).be.a('Array');
         done();
       });
     });
+    it("returns author Array", function(done) {
+      request(url, function(error, response, body) {
+      expect(JSON.parse(response.body).authors).be.a('Array');
+      done();
+    });
   });
+});
 
-
-describe("Testing GET localhost author 3", function() {
+describe("Testing GET localhost author 2", function() {
     var url = "http://localhost:3000/author/2";
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+    it("returns author id to be the same as the request", function(done) {
+      request(url, function(error, response, body) {
         expect(JSON.parse(response.body).author.id).to.equal(2);
         done();
       });
+    });
+});
+
+describe("Testing GET localhost author 3", function() {
+    var url = "http://localhost:3000/author/3";
+    it("returns status 200", function(done) {
+      request(url, function(error, response, body) {
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
     });  
+    it("returns author id to be the same as the request", function(done) {
+      request(url, function(error, response, body) {
+        expect(JSON.parse(response.body).author.id).to.equal(3);
+        done();
+      });
+    });
   });
 
 describe("Testing GET localhost author 1", function() {
@@ -31,10 +56,21 @@ describe("Testing GET localhost author 1", function() {
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+    it("returns author id to be the same as the request", function(done) {
+      request(url, function(error, response, body) {
         expect(JSON.parse(response.body).author.id).to.equal(1);
         done();
       });
-    });  
+    });
+    it("returns author body with Array of articles", function(done) {
+      request(url, function(error, response, body) {
+      expect(JSON.parse(response.body).author.Articles).be.a('Array');
+      done();
+    });
+  });
   });
 
 describe("Testing GET localhost article slug moring-vinyasa-flow-routine", function() {
@@ -42,6 +78,11 @@ describe("Testing GET localhost article slug moring-vinyasa-flow-routine", funct
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });  
+    it("returns article slug to be the same as the request", function(done) {
+      request(url, function(error, response, body) {
         expect(JSON.parse(response.body).article.slug).to.equal('moring-vinyasa-flow-routine');
         done();
       });
@@ -56,7 +97,13 @@ describe("Testing GET localhost article slug introduction-to-ashtanga", function
         expect(JSON.parse(response.body).article.slug).to.equal('introduction-to-ashtanga');
         done();
       });
-    });  
+    });
+    it("returns article slug to be the same as the request", function(done) {
+      request(url, function(error, response, body) {
+        expect(JSON.parse(response.body).article.slug).to.equal('introduction-to-ashtanga');
+        done();
+      });
+    }); 
   });
 
 describe("Testing GET localhost article slug secrets-of-a-yoga-teacher", function() {
@@ -64,6 +111,11 @@ describe("Testing GET localhost article slug secrets-of-a-yoga-teacher", functio
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });  
+    it("returns article slug to be the same as the request", function(done) {
+      request(url, function(error, response, body) {
         expect(JSON.parse(response.body).article.slug).to.equal('secrets-of-a-yoga-teacher');
         done();
       });
@@ -75,6 +127,11 @@ describe("Testing GET localhost article slug yoga-therapy", function() {
     it("returns status 200", function(done) {
       request(url, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+    it("returns article slug to be the same as the request", function(done) {
+      request(url, function(error, response, body) {
         expect(JSON.parse(response.body).article.slug).to.equal('yoga-therapy');
         done();
       });
